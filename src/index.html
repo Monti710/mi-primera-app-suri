@@ -1,19 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Monti Apps Course</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Usuarios Demo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <main>
-    <h1>Monti apps course</h1>
-    <br>
-    <p>Welcome to the Monti Apps Course! This is a simple JavaScript app.</p>
-  </main>
-</body>
+    <!-- Simulador de Login -->
+    <div class="container" id="loginContainer" style="margin-bottom: 20px; border-top: 5px solid #28a745;">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUser">Usuario:</label>
+                <input type="text" id="loginUser" required autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label for="loginPass">Contraseña:</label>
+                <input type="password" id="loginPass" required> 
+            </div>
+            
+            <button type="submit" style="background: #28a745;">Ingresar</button>
+            <p id="loginResult" style="margin-top: 15px; font-weight: bold;"></p>
+        </form>
+    </div>
 
+    <!-- Contenedor del CRUD (Oculto por defecto) -->
+    <div class="container" id="crudContainer" style="display: none;">
+        <h2>Gestión de Usuarios (Demo Local)</h2>
+        
+        <!-- Botón de Cerrar Sesión -->
+        <button id="logoutBtn" style="background: #dc3545; margin-bottom: 20px;">Cerrar Sesión</button>
+        
+        <!-- Formulario para Crear / Actualizar (Este se oculta para el Usuario Normal) -->
+        <form id="userForm">
+            <input type="hidden" id="editIndex">
+            
+            <div class="form-group">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" required autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña (En claro):</label>
+                <input type="text" id="password" required autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label for="role">Rol:</label>
+                <select id="role">
+                    <option value="Usuario Normal">Usuario Normal</option>
+                    <option value="Admin">Admin</option>
+                </select>
+            </div>
+            
+            <button type="submit" id="submitBtn">Crear Usuario</button>
+            <button type="button" id="cancelBtn" style="display:none; background: #666;">Cancelar</button>
+        </form>
+
+        <!-- Tabla de Lectura (Siempre visible) -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Contraseña (Plana)</th>
+                    <th>Contraseña (Hash SHA-256)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="usersTableBody">
+                <!-- Los usuarios se inyectarán aquí con JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
